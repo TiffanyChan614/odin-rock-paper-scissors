@@ -25,7 +25,7 @@
             return first + remaining;
         }
 
-        function singleRound(playerSelection, computerSelection){
+        function playRound(playerSelection, computerSelection){
             playerSelection = capitalize(playerSelection);
             computerSelection = capitalize(computerSelection);
             switch(playerSelection){
@@ -56,10 +56,6 @@
                 default: return "Invalid playerSelection";
             }
         }
-
-        console.log(singleRound("Rock", "scissor"));
-        console.log(singleRound("scissor", "scissor"));
-        console.log(singleRound("scissors", "scissors"));
     </script>
 </head>
 <body>
