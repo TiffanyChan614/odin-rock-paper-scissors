@@ -18,6 +18,48 @@
                return "Scissors";
            }
         }
+
+        function capitalize(string){
+            let first = string.slice(0, 1).toUpperCase();
+            let remaining = string.slice(1).toLowerCase();
+            return first + remaining;
+        }
+
+        function singleRound(playerSelection, computerSelection){
+            playerSelection = capitalize(playerSelection);
+            computerSelection = capitalize(computerSelection);
+            switch(playerSelection){
+                case "Rock":
+                    switch(computerSelection){
+                        case "Rock": return `It's a draw! ${computerSelection} ties with ${playerSelection}.`;
+                        case "Paper": return `You lose! ${computerSelection} beats ${playerSelection}.`;
+                        case "Scissors": return `You win! ${playerSelection} beats ${computerSelection}.`;
+                        default: return "Invalid computerSelection";
+                    }
+                    break;
+                case "Paper":
+                    switch(computerSelection){
+                        case "Rock": return `You win! ${playerSelection} beats ${computerSelection}.`;
+                        case "Paper": return `It's a draw! ${computerSelection} ties with ${playerSelection}.`;
+                        case "Scissors": return `You lose! ${computerSelection} beats ${playerSelection}.`;
+                        default: return "Invalid computerSelection";
+                    }
+                    break;
+                case "Scissors":
+                    switch(computerSelection){
+                        case "Rock": return `You lose! ${computerSelection} beats ${playerSelection}.`;
+                        case "Paper": return `You win! ${playerSelection} beats ${computerSelection}.`;
+                        case "Scissors": return `It's a draw! ${computerSelection} ties with ${playerSelection}.`;
+                        default: return "Invalid computerSelection";
+                    }
+                    break;
+                default: return "Invalid playerSelection";
+            }
+        }
+
+        console.log(singleRound("Rock", "scissor"));
+        console.log(singleRound("scissor", "scissor"));
+        console.log(singleRound("scissors", "scissors"));
     </script>
 </head>
 <body>
