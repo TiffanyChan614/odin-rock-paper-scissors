@@ -5,100 +5,36 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script>
-        function computerPlay(){
-           let choice = Math.floor(Math.random() * 3);
-           if (choice === 0){
-               return "Rock";
-           }
-           else if (choice === 1){
-               return "Paper";
-           }
-           else{
-               return "Scissors";
-           }
-        }
-
-        function capitalize(string){
-            let first = string.slice(0, 1).toUpperCase();
-            let remaining = string.slice(1).toLowerCase();
-            return first + remaining;
-        }
-
-        function playRound(playerSelection, computerSelection){
-            playerSelection = capitalize(playerSelection);
-            computerSelection = capitalize(computerSelection);
-            switch(playerSelection){
-                case "Rock":
-                    switch(computerSelection){
-                        case "Rock": return `It's a draw! ${computerSelection} ties with ${playerSelection}.`;
-                        case "Paper": return `You lose! ${computerSelection} beats ${playerSelection}.`;
-                        case "Scissors": return `You win! ${playerSelection} beats ${computerSelection}.`;
-                        default: return "Invalid computerSelection";
-                    }
-                    break;
-                case "Paper":
-                    switch(computerSelection){
-                        case "Rock": return `You win! ${playerSelection} beats ${computerSelection}.`;
-                        case "Paper": return `It's a draw! ${computerSelection} ties with ${playerSelection}.`;
-                        case "Scissors": return `You lose! ${computerSelection} beats ${playerSelection}.`;
-                        default: return "Invalid computerSelection";
-                    }
-                    break;
-                case "Scissors":
-                    switch(computerSelection){
-                        case "Rock": return `You lose! ${computerSelection} beats ${playerSelection}.`;
-                        case "Paper": return `You win! ${playerSelection} beats ${computerSelection}.`;
-                        case "Scissors": return `It's a draw! ${computerSelection} ties with ${playerSelection}.`;
-                        default: return "Invalid computerSelection";
-                    }
-                    break;
-                default: return "Invalid playerSelection";
-            }
-        }
-
-        function game(){
-            let playerScore = 0;
-            let computerScore = 0;
-            for (let i = 0; i < 5; i++){
-                let playerSelection = prompt("Enter your move: ", "");
-                while (!playerSelection) {
-                    console.log("Please enter something! Anything is still better than nothing...");
-                    playerSelection = prompt("Enter your move: ", "");
-                }
-                let computerSelection = computerPlay();
-                let roundMsg = playRound(playerSelection, computerSelection);
-                if (roundMsg.includes("draw")){
-                    playerScore++;
-                    computerScore++;
-                }
-                else if (roundMsg.includes("win")){
-                    playerScore++;
-                }
-                else if (roundMsg.includes("lose")){
-                    computerScore++;
-                }
-                console.log(`Round ${i+1}: ${roundMsg}`);
-            }
-
-            console.log(`Player's score: ${playerScore}`);
-            console.log(`Computer's score: ${computerScore}`);
-            if (playerScore > computerScore){
-                console.log("Congratulations! You win!");
-            }
-            else if (computerScore > playerScore){
-                console.log("Unfortunately the computer wins...");
-            }
-            else{
-                console.log("It's a draw!");
-            }
-        }
-
-        game();
-
-    </script>
+    <link rel="stylesheet" href="style.css">
+    <script src="rps.js" defer></script>
 </head>
 <body>
-
+    <header>
+        <h1>Rock Paper Scissors!</h1>
+        <div class="round">Round
+            <span class="round-span">1</span>
+        </div>
+    </header>
+    <div class="select">
+        <div class="prompt">Choose your move...</div>
+        <div class="prompt container">
+            <button class="move rock">Rock</button>
+            <button class="move paper">Paper</button>
+            <button class="move scissors">Scissors</button>
+        </div>
+    </div>
+    <div class="info">
+        <div class="player selection">Your move: <span class="player-selection-span"></span></div>
+        <div class="computer selection">Computer's move: <span class="computer-selection-span"></span></div>
+        <div class="player score">Your score: <span class="player-score-span"></span></div>
+        <div class="computer score">Computer's score: <span class="computer-score-span"></span></div>
+    </div>
+    <div result>
+        <div class="msg"></div>
+        <div class="end msg"></div>
+    </div>
+    <div class="ask-again">
+        <button class="hidden again">Play again</button>
+    </div>
 </body>
 </html>
